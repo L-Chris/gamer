@@ -7,12 +7,17 @@ public class Ball : MonoBehaviour
 
     public float speed = 1.0f;
     public float power = 0.0f;
+    public float powerSpeed = 0.1f;
     private Rigidbody body;
-    private bool isFlying = false;
 
     void Start()
     {
-        this.body = this.GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ResetVelocity();
     }
 
     void Update()
@@ -35,20 +40,16 @@ public class Ball : MonoBehaviour
         }
 
         // 变大
-        if (!isFlying)
+        if (Input.GetKey(KeyCode.H))
         {
-            if (Input.GetKey(KeyCode.H))
-            {
-                transform.localScale = new Vector3(transform.localScale.x * 0.99f, transform.localScale.y * 0.99f, transform.localScale.z * 0.99f);
-                power++;
-            }
-            if (Input.GetKeyUp(KeyCode.H) && power > 0)
-            {
-                isFlying = true;
-                body.velocity += new Vector3(0, power, power);
-            }
+            transform.localScale = new Vector3(transform.localScale.x * 0.99f, transform.localScale.y * 0.99f, transform.localScale.z * 0.99f);
+            power += powerSpeed;
         }
-
+        if (Input.GetKeyUp(KeyCode.H) && power > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            body.velocity += new Vector3(0, power, power);
+        }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -59,10 +60,14 @@ public class Ball : MonoBehaviour
 
     void Reset()
     {
-        isFlying = false;
-        power = 0;
-        body.velocity = new Vector3(0, 0, 0);
+        ResetVelocity();
         body.position = new Vector3(0, 0.5f, 0);
         transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void ResetVelocity ()
+    {
+        power = 0;
+        body.Sleep();
     }
 }
