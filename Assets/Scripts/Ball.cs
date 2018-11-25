@@ -9,19 +9,21 @@ public class Ball : MonoBehaviour
     public float power = 0.0f;
     public float powerSpeed = 0.1f;
     private Rigidbody body;
-    private GameObject planes;
+    private GameObject stages;
 
     void Start()
     {
         body = GetComponent<Rigidbody>();
-        planes = GameObject.Find("Planes");
+        stages = GameObject.Find("Stages");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Stage") return;
-        ResetVelocity();
-        planes.SendMessage("CreateNextPlane");
+        string tag = collision.gameObject.tag;
+        if (tag == "Stage") {
+            ResetVelocity();
+            stages.SendMessage("CreateNextStage");
+        }
     }
 
     void Update()
@@ -52,14 +54,8 @@ public class Ball : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.H) && power > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            body.velocity += new Vector3(0, power, power);
+            body.AddForce(new Vector3(0, power * 100, power * 100));
         }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            this.Reset();
-        }
-
     }
 
     void Reset()

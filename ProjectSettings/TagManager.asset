@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Planes
   - Stage
+  - Ground
   layers:
   - Default
   - TransparentFX

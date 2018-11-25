@@ -63,7 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\Camera.cs" />
-    <Compile Include="Assets\Scripts\Planes.cs" />
+    <Compile Include="Assets\Scripts\Page.cs" />
+    <Compile Include="Assets\Scripts\Stages.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>G:/project/gamer/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
