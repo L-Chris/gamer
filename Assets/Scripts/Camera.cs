@@ -5,18 +5,16 @@ using UnityEngine;
 public class Camera : MonoBehaviour {
 
     public GameObject target;
-    public float damping = 5;
+    public float damping = 10;
     Vector3 offset;
 
-	// Use this for initialization
 	void Start () {
         offset = transform.position - target.transform.position;
 	}
 	
-	// Update is called once per frame
 	void Update () {}
 
-    private void LateUpdate()
+    void FixedUpdate ()
     {
         Vector3 desiredPosition = target.transform.position + offset;
         Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);

@@ -9,15 +9,19 @@ public class Ball : MonoBehaviour
     public float power = 0.0f;
     public float powerSpeed = 0.1f;
     private Rigidbody body;
+    private GameObject planes;
 
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        planes = GameObject.Find("Planes");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag != "Stage") return;
         ResetVelocity();
+        planes.SendMessage("CreateNextPlane");
     }
 
     void Update()

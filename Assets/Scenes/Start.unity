@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2130271641}
-  damping: 5
+  damping: 10
 --- !u!1 &1132538496
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +282,8 @@ GameObject:
   - component: {fileID: 1132538500}
   - component: {fileID: 1132538499}
   m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
+  m_Name: 1
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
